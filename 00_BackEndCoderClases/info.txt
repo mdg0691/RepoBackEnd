@@ -1,0 +1,11 @@
+[
+  {
+    "title": "kiwi",
+    "description": "verde",
+    "price": "35",
+    "thumbnail": "img6",
+    "code": "006",
+    "stock": "50",
+    "id": 6
+  }
+]
