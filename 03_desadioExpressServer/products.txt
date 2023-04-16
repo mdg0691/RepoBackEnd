@@ -1,0 +1,47 @@
+[
+  {
+    "title": "tomate",
+    "description": "rojo",
+    "price": "20",
+    "thumbnail": "img1",
+    "code": "001",
+    "stock": "40",
+    "id": 1
+  },
+  {
+    "title": "pera",
+    "description": "amarilla",
+    "price": "30",
+    "thumbnail": "img2",
+    "code": "002",
+    "stock": "30",
+    "id": 2
+  },
+  {
+    "title": "zapallo",
+    "description": "verder",
+    "price": "150",
+    "thumbnail": "img3",
+    "code": "003",
+    "stock": "200",
+    "id": 3
+  },
+  {
+    "title": "frutilla",
+    "description": "",
+    "price": "100",
+    "thumbnail": "img5",
+    "code": "004",
+    "stock": "50",
+    "id": 5
+  },
+  {
+    "title": "kiwi",
+    "description": "verde",
+    "price": "35",
+    "thumbnail": "img6",
+    "code": "006",
+    "stock": "50",
+    "id": 6
+  }
+]
