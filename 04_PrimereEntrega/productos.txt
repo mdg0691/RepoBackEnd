@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Tomate",
+    "description": "Cherry",
+    "code": "001",
+    "price": 20,
+    "status": true,
+    "stock": 20,
+    "category": "Verduras",
+    "thumbnail": [],
+    "id": 1
+  },
+  {
+    "title": "zapallo",
+    "description": "verde",
+    "code": "002",
+    "price": 20,
+    "status": true,
+    "stock": 20,
+    "category": "Verduras",
+    "thumbnail": [],
+    "id": 2
+  },
+  {
+    "title": "cebolla",
+    "description": "blanca",
+    "code": "003",
+    "price": 34,
+    "status": true,
+    "stock": 33,
+    "category": "Verduras",
+    "thumbnail": [],
+    "id": 3
+  },
+  {
+    "title": "mandarina",
+    "description": "dulce",
+    "code": "004",
+    "price": 34,
+    "status": true,
+    "stock": 33,
+    "category": "frutas",
+    "thumbnail": [],
+    "id": 4
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "cantidad": [
+      {
+        "id": 1,
+        "title": "mandarinas",
+        "quantity": 20
+      },
+      {
+        "id": 2,
+        "title": "mandarinas",
+        "quantity": "5"
+      },
+      {
+        "id": 3,
+        "title": "pera",
+        "quantity": 30
+      }
+    ]
+  }
+]
