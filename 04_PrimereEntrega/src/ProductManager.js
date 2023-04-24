@@ -5,6 +5,7 @@ export class ProductManager {
         this.path = path
     }
 
+    // Metodo estatico para asignar id
     static incrementarID() {
         if (this.idIncrement) {
             this.idIncrement++
@@ -14,6 +15,7 @@ export class ProductManager {
         return this.idIncrement
     }
 
+    //Metodo para agregar producto
     async addProduct(product) {
             const prods = await this.getProducts()
             try{
@@ -27,6 +29,7 @@ export class ProductManager {
         
     }
 
+    // Metodo para obtener todos los productos
     async getProducts() {
         try{
             const prods = await fs.readFile(this.path, 'utf-8')
@@ -37,6 +40,7 @@ export class ProductManager {
         
     }
 
+    //Metodo para obtener producto por id
     async getProductById(id) {
         const prodsJSON = await fs.readFile(this.path, 'utf-8')
         const prods = JSON.parse(prodsJSON)
@@ -47,6 +51,7 @@ export class ProductManager {
         }
     }
 
+    //Metodo para actualizar prod
     async updateProduct(id, { title, description,code,price,status,stock,category,thumbnail}) {
         const prods = await this.getProducts()
         if (prods.some(prod => prod.id === parseInt(id))) 
@@ -68,6 +73,7 @@ export class ProductManager {
             }
     }
 
+    //Metodo para eliminar prod 
     async deleteProduct(id) {
         const prods = await this.getProducts()
         if (prods.some(prod => prod.id === parseInt(id)))
