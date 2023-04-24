@@ -5,10 +5,13 @@ const productManager = new ProductManager('./productos.txt')
 
 const productRouter = Router() // voy a definir mis rutas con esta cte
 
+
+//Ruta para obtener todos los carritos y productos
 productRouter.get("/", async (req, res) => {
     const products = await productManager.getProducts()
     res.send(products)
 })
+
 
 productRouter.get("/:id", async (req, res) => {
     const product = await productManager.getProductById(req.params.id)

@@ -26,10 +26,10 @@ app.use(express.urlencoded({ extended: true })) //Permite poder realizar consult
 
 // ROUTES
 
-app.use('/product', productRouter)// app.use es para que se implemente 
+app.use('/api/products', productRouter)// app.use es para que se implemente 
 // con esto cada vez q llame a product en la ruta, con productRouter me redirecciona
 // en el codigo de la carpeta product.router.js
-app.use('/carts', cartRouter)
+app.use('/api/carts', cartRouter)
 
 app.use('/static', express.static(__dirname + '/public')) //Defino la ruta de mi carpeta publica
 
