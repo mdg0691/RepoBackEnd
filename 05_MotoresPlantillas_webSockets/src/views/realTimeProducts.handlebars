@@ -1,0 +1,41 @@
+{{!-- {{#each products}}
+        <div>
+            <p>{{this.id}}</p>
+            <p>{{this.title}}</p>
+            <p>{{this.price}}</p>
+        </div>
+    {{/each}} --}}
+
+<form id="formProducto"> 
+  <div class="mb-2">
+    <label for="title" class="form-label">title</label>
+    <input type="text" class="form-control" name = "title">
+  </div>
+  <div class="mb-2">
+    <label for="description" class="form-label">description</label>
+    <input type="text" class="form-control" name = "description">
+  </div>
+  <div class="mb-2">
+    <label for="price" class="form-label">price</label>
+    <input type="number" class="form-control" name = "">
+  </div>
+  <div class="mb-2">
+    <label for="thumbnail" class="form-label">thumbnail</label>
+    <input type="text" class="form-control" name = "thumbnail">
+  </div>
+  <div class="mb-2">
+    <label for="code" class="form-label">code</label>
+    <input type="text" class="form-control" name = "code">
+  </div>
+  <div class="mb-3">
+    <label for="stock" class="form-label">stock</label>
+    <input type="number" class="form-control" name="stock">
+  </div>
+  <button type="submit" class="btn btn-primary">Crear Producto</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+{{!-- <script src="js/main.js"></script> --}}
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"
+        integrity="sha512-AI5A3zIoeRSEEX9z3Vyir8NqSMC1pY7r5h2cE+9J6FLsoEmSSGLFaqMQw8SWvoONXogkfFrkQiJfLeHLz3+HOg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
