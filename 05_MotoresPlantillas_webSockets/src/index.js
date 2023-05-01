@@ -4,7 +4,7 @@ import { __dirname, __filename } from './path.js'
 import { engine } from 'express-handlebars'
 import { Server } from 'socket.io'
 import http from "http"
-// import sockets from './sockets.js'
+import sockets from './sockets.js'
 import *as path from 'path' //importo path para el manejo de las rutas
 
 
@@ -42,22 +42,23 @@ app.use(( req, res, next) => {
     return next()
 })
 
-// sockets(io)
+sockets(io)
 
 
-io.on('connection', async (socket) => {
-    console.log("Cliente conectado")
+// io.on('connection', async (socket) => {
+//     console.log("Cliente conectado")
 
-    socket.on("mensaje", info => {
-        console.log(info)
-        // mensajes.push(info)
-        // io.emit("mensajes", mensajes) //Le envio todos los mensajes guardados
-    })
+//     socket.on("mensaje", info => {
+//         console.log(info)
+//         // mensajes.push(info)
+//         // io.emit("mensajes", mensajes) //Le envio todos los mensajes guardados
+//     })
 
-    socket.on("nuevoProducto", (prod) => {
-        console.log(prod)
-    })
-})
+//     socket.on("nuevoProducto", (prod) => {
+//         console.log(prod)
+//     })
+
+// })
 
 // ROUTES
 
@@ -74,29 +75,3 @@ app.use('/product', express.static(__dirname + '/public')) // clase 10 .. defino
 app.get("/", (req, res) => {
     res.render('realTimeProducts')
 })
-
-
-// app.get('/', (req, res) => {
-//     const tutor = {
-//         nombre: 'Luciana Rosa Gonzalez',
-//         email : 'lu@lu.com',
-//         rol: 'tutor'
-//     }
-
-//     const cursos =[
-//         {numero:'12',nombre:'c++',dia:'mym',horario:'afternoon'},
-//         {numero:'345',nombre:'react',dia:'akdsf',horario:'nigh'},
-//         {numero:'64',nombre:'linux',dia:'asdf',horario:'man'}
-//     ]
-// //primer parametro indico la vista a utilizar ejm home , about
-
-//     res.render('home',{    
-//          titulo :"plataforma coder",
-//          mensaje: "hola buenos dias",
-//          user : tutor,
-//          isTutor: tutor.rol === "tutor", //VoF
-//          cursos: cursos
-        
-//     })
-//     })
-
