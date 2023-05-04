@@ -1,4 +1,4 @@
- const socket = io()
+const socket = io()
 
 const formProduct = document.getElementById("formProducto")
 
@@ -12,10 +12,14 @@ formProduct.addEventListener('submit', (e) => {
 })
 
 
-// Escuchar el evento new-product
-// socket.on('update-product', async (product) => {
-//     const li = document.createElement('li');
-//     li.setAttribute('data-product-id', product.id);
-//     li.innerHTML = `${product.name} - $${product.price} <button class="delete-btn">Delete</button>`;
-//     document.querySelector('#product-list').appendChild(li);
-//   });
+//Escuchar el evento listado de los productos agregados
+socket.on('listado',  async (product) => {
+    console.log(product)
+    const productos = Object.values(product)
+    console.log(productos)
+    const li = document.createElement('li');
+    li.innerHTML = ""
+    productos.map(e => {
+        li.innerHTML += `<p>${e.id} : ${e.title}</p>`
+    })
+})

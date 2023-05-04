@@ -17,7 +17,10 @@ export default (io) => {
             console.log(typeof(propertyValues));
             const prodJson = JSON.parse(propertyValues)// parse el producto para utilizar el metodo add product
             console.log(prodJson);
-            ProductMana.addProduct(prodJson)
+            await ProductMana.addProduct(prodJson)
+
+            const products = await ProductMana.getProducts()
+            socket.emit("listado", {products : products})
         })
 
     

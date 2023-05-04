@@ -62,9 +62,9 @@ const prodManager = new ProductManager('./productos.txt')
 
 //ruta para realtime products
 app.get('/', async (req, res) => {
-   
-    const products = await prodManager.getProducts()
-    res.render('realTimeProducts', {
-        products : products
-    })
+   res.render('realTimeProducts')
+    // const products = await prodManager.getProducts()
+    // res.render('realTimeProducts', {
+    //     products : products
+    // })
   });
