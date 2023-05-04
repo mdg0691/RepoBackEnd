@@ -17,7 +17,7 @@
   </div>
   <div class="mb-2">
     <label for="price" class="form-label">price</label>
-    <input type="number" class="form-control" name = "">
+    <input type="text" class="form-control" name = "price">
   </div>
   <div class="mb-2">
     <label for="thumbnail" class="form-label">thumbnail</label>
@@ -34,8 +34,20 @@
   <button type="submit" class="btn btn-primary">Crear Producto</button>
 </form>
 
+<ul id="product-list">
+        {{#each products}}
+            <li>{{this.id}} - {{this.title}} - ${{this.price}}</li>
+        {{/each}}
+    </ul>
+<ul id="product-list">
+  {{#each products}}
+    <li data-product-id="{{this.id}}">{{this.title}} - ${{this.price}} <button class="delete-btn">Delete</button></li>
+  {{/each}}
+</ul>
+
 <script src="/socket.io/socket.io.js"></script>
-{{!-- <script src="js/main.js"></script> --}}
+
+<script src="js/main.js"></script>
 {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"
         integrity="sha512-AI5A3zIoeRSEEX9z3Vyir8NqSMC1pY7r5h2cE+9J6FLsoEmSSGLFaqMQw8SWvoONXogkfFrkQiJfLeHLz3+HOg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}

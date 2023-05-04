@@ -1,10 +1,29 @@
 [
   {
-    "prod": "{\"title\":\"mandarina\",\"description\":\"criolla\",\"thumbnail\":\"asd\",\"code\":\"333\",\"stock\":\"33\"}",
+    "title": "mandarina",
+    "description": "criolla",
+    "price": "11",
+    "thumbnail": "asd",
+    "code": "11",
+    "stock": "555",
     "id": 1
   },
   {
-    "prod": "{\"title\":\"mandarina\",\"description\":\"criolla\",\"thumbnail\":\"asd\",\"code\":\"333\",\"stock\":\"33\"}",
-    "id": 1
+    "title": "mandarina",
+    "description": "criolla",
+    "price": "11",
+    "thumbnail": "asd",
+    "code": "11",
+    "stock": "555",
+    "id": 2
+  },
+  {
+    "title": "mandarina",
+    "description": "criolla",
+    "price": "11",
+    "thumbnail": "asd",
+    "code": "11",
+    "stock": "555",
+    "id": 3
   }
 ]

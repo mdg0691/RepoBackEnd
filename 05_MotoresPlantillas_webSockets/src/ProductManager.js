@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 
+
 export class ProductManager {
     constructor(path) {
         this.path = path
@@ -18,6 +19,7 @@ export class ProductManager {
         const prodsJSON = await fs.readFile(this.path, 'utf-8')
         const prods = JSON.parse(prodsJSON)
         producto.id = ProductManager.incrementarID()
+        // console.log(producto)
         prods.push(producto)
         await fs.writeFile(this.path, JSON.stringify(prods, null, 2))
         return "Producto creado"
@@ -68,5 +70,13 @@ export class ProductManager {
         }
     }
 
+}
+
+
+export default (io) => {
+    socket.on("actualizarList", async (prod) => {
+        const products = await ProductMana.getProducts()
+        socket.emit('update-product', {products})
+    })
 }
 

@@ -1,11 +1,6 @@
 import { Router } from 'express'// importo solo Router desde express para manejar las rutas
 import { ProductManager } from '../ProductManager.js'
 
-// export default (io) => {
-//     io.on('conection', () => {
-//         console.log("new user conected")
-//     })
-// }
 const ProductMana = new ProductManager('./productos.txt')
 
 const productRouter = Router() // voy a definir mis rutas con esta cte
@@ -13,11 +8,6 @@ const productRouter = Router() // voy a definir mis rutas con esta cte
 productRouter.get("/", async (req, res) => {
     const products = await ProductMana.getProducts()
     res.send(products)
-})
-
-productRouter.get("/realtimeproducts", async (req, res) => {
-    const products = await ProductMana.getProducts()
-    res.render("realtimeproducts",{products})
 })
 
 productRouter.get("/:id", async (req, res) => {
@@ -32,14 +22,6 @@ productRouter.get("/:id", async (req, res) => {
 })
 
 productRouter.post("/", async (req, res) => {
-    
-    // io.on('connection', async (socket)  => {
-
-    //     console.log('Cliente conectado 3');
-
-    //     const products = await pm.getProducts()
-    //     io.emit("mensaje", 'hola')
-    // })
     const { title, description, price, thumbnail, code, stock } = req.body
     await ProductMana.addProduct({ title, description, price, thumbnail, code, stock })
     

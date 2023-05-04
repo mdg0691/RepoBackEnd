@@ -6,7 +6,7 @@ import { Server } from 'socket.io'
 import http from "http"
 import sockets from './sockets.js'
 import *as path from 'path' //importo path para el manejo de las rutas
-
+import { ProductManager } from '../src/ProductManager.js'
 
 
 //Configuracion de express
@@ -33,7 +33,7 @@ app.set('views', path.resolve(__dirname, './views')) // path.resolve es una conc
 // middlewere
 app.use(express.json()) //Permite ejecutar JSON en mi app
 app.use(express.urlencoded({ extended: true })) //Permite poder realizar consultas en la URL (req.query)
-
+app.use("/", express.static(__dirname + "/public"))
 //ServerIO
 
 const io = new Server( server, {cors: {origin:"*",credentials: true}}) //{cors: {origin:"*"}}
@@ -45,21 +45,6 @@ app.use(( req, res, next) => {
 sockets(io)
 
 
-// io.on('connection', async (socket) => {
-//     console.log("Cliente conectado")
-
-//     socket.on("mensaje", info => {
-//         console.log(info)
-//         // mensajes.push(info)
-//         // io.emit("mensajes", mensajes) //Le envio todos los mensajes guardados
-//     })
-
-//     socket.on("nuevoProducto", (prod) => {
-//         console.log(prod)
-//     })
-
-// })
-
 // ROUTES
 
 app.use('/product', productRouter)// app.use es para que se implemente 
@@ -70,8 +55,16 @@ app.use('/product', productRouter)// app.use es para que se implemente
 app.use('/product', express.static(__dirname + '/public')) // clase 10 .. defino esta ruta  para poder acceder a mi css con hdbs
 
 
-
 //HBS
-app.get("/", (req, res) => {
-    res.render('realTimeProducts')
-})
+
+const prodManager = new ProductManager('./productos.txt')
+
+
+//ruta para realtime products
+app.get('/', async (req, res) => {
+   
+    const products = await prodManager.getProducts()
+    res.render('realTimeProducts', {
+        products : products
+    })
+  });
