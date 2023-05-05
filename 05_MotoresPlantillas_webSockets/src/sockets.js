@@ -1,6 +1,7 @@
 //Aqui voy a manejar los eventos de sockets
 import { ProductManager } from '../src/ProductManager.js'
 
+
 const ProductMana = new ProductManager('./productos.txt')
 
 export default (io) => {
@@ -22,10 +23,17 @@ export default (io) => {
             const products = await ProductMana.getProducts()
             socket.emit("listado", {products : products})
         })
-
-    
+        socket.on("delete-product" , async (prodDel) => {
+            
+            const prodDelete = Object.values(prodDel)
+            console.log(typeof(prodDelete))
+            console.log(prodDelete)
+            await ProductMana.deleteProduct(prodDelete)
+            const products = await ProductMana.getProducts()
+            socket.emit("listado", {products : products})
+        })
     })
-    
-    
 
+    
+    
 }

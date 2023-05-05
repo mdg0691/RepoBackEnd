@@ -1,11 +1,4 @@
-{{!-- {{#each products}}
-        <div>
-            <p>{{this.id}}</p>
-            <p>{{this.title}}</p>
-            <p>{{this.price}}</p>
-        </div>
-    {{/each}} --}}
-
+<p>Formulario para cargar Productos</p>
 <form id="formProducto"> 
   <div class="mb-2">
     <label for="title" class="form-label">title</label>
@@ -34,16 +27,25 @@
   <button type="submit" class="btn btn-primary">Crear Producto</button>
 </form>
 
-<ul id="product-list">
-        {{#each products}}
-            <li>{{this.id}} - {{this.title}} - ${{this.price}}</li>
-        {{/each}}
-    </ul>
-<ul id="product-list">
-  {{#each products}}
-    <li data-product-id="{{this.id}}">{{this.title}} - ${{this.price}} <button class="delete-btn">Delete</button></li>
-  {{/each}}
-</ul>
+<p>Listado de Productos</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">description</th>
+      <th scope="col">price</th>
+      <th scope="col">thumbnail</th>
+      <th scope="col">code</th>
+      <th scope="col">stock</th>
+    </tr>
+  </thead>
+  <tbody id="data-output">
+
+  </tbody>
+
+</table>
+
 
 <script src="/socket.io/socket.io.js"></script>
 

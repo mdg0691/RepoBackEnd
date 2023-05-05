@@ -1,29 +1,31 @@
-<form id="formProducto"> 
-  <div class="mb-2">
-    <label for="title" class="form-label">title</label>
-    <input type="text" class="form-control" name = "title">
-  </div>
-  <div class="mb-2">
-    <label for="description" class="form-label">description</label>
-    <input type="text" class="form-control" name = "description">
-  </div>
-  <div class="mb-2">
-    <label for="price" class="form-label">price</label>
-    <input type="number" class="form-control" name = "">
-  </div>
-  <div class="mb-2">
-    <label for="thumbnail" class="form-label">thumbnail</label>
-    <input type="text" class="form-control" name = "thumbnail">
-  </div>
-  <div class="mb-2">
-    <label for="code" class="form-label">code</label>
-    <input type="text" class="form-control" name = "code">
-  </div>
-  <div class="mb-3">
-    <label for="stock" class="form-label">stock</label>
-    <input type="number" class="form-control" name="stock">
-  </div>
-  <button type="submit" class="btn btn-primary">Crear Producto</button>
-</form>
 
-<script src="/socket.io/socket.io.js"></script>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">title</th>
+          <th scope="col">description</th>
+          <th scope="col">price</th>
+          <th scope="col">thumbnail</th>
+          <th scope="col">code</th>
+          <th scope="col">stock</th>
+        </tr>
+      </thead>
+      <tbody id="data-output">
+        {{#each products}}
+          <tr>
+                <th scope="row">#{{this.id}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>${{this.price}}</td>
+                <td>{{this.thumbnail}}</td>
+                <td>{{this.code}}</td>
+                <td>{{this.stock}}</td>
+            </tr>
+        
+        
+        {{/each}}
+      </tbody>
+
+    </table>        
+ 

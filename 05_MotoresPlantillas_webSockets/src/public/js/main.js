@@ -13,13 +13,42 @@ formProduct.addEventListener('submit', (e) => {
 
 
 //Escuchar el evento listado de los productos agregados
-socket.on('listado',  async (product) => {
-    console.log(product)
-    const productos = Object.values(product)
-    console.log(productos)
-    const li = document.createElement('li');
-    li.innerHTML = ""
-    productos.map(e => {
-        li.innerHTML += `<p>${e.id} : ${e.title}</p>`
-    })
+socket.on('listado',  async (prod) => {
+    const products = Object.values(prod)
+    console.log(products)
+    let placeholder = document.querySelector("#data-output")
+    let out =""
+    console.log("listando productos agregados")
+    for (let element of products){
+
+        for (let product of element){
+            out += `
+            <tr>
+                <th scope="row">${product.id}</th>
+                <td>${product.title}</td>
+                <td>${product.description}</td>
+                <td>${product.price}</td>
+                <td>${product.thumbnail}</td>
+                <td>${product.code}</td>
+                <td>${product.stock}</td>
+                <td>
+                <button type="button" id ="delete" onclick="deleteProduct()" value= "${product.id}" class="btn btn-primary">Delete</button>
+                </td>
+            </tr>
+            `;
+            placeholder.innerHTML = out
+        }    
+    }
+    
 })
+
+function deleteProduct() {
+    const deleteProdId  = document.getElementById("delete").value
+    socket.emit("delete-product", {deleteProdId})
+    deleteProdId =""
+}
+// deleteProduct.addEventListener("click", (e) => {
+//     e.preventDefault()
+//     console.log(e.value)
+    
+// })
