@@ -21,7 +21,7 @@ socket.on('listado',  async (prod) => {
     console.log("listando productos agregados")
     for (let element of products){
 
-        for (let product of element){
+        for (let product of element){ 
             out += `
             <tr>
                 <th scope="row">${product.id}</th>
