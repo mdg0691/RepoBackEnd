@@ -6,8 +6,7 @@ import __dirname from './utils.js'
 import *as path from "path"
 import { Server } from 'socket.io'
 import { messageModel } from './models/Messages.js'
-import  cartModel  from './models/Cart.js'
-import productModel from './models/Products.js'
+import productRouter from './routes/product.routes.js'
 
 // Config server
 const app = express()
@@ -53,7 +52,13 @@ app.engine('handlebars', engine())//voy a trabajar con handlebars
 app.set('view engine', 'handlebars')// mis vistas son de hbs (handle barts)
 app.set("views", path.resolve(__dirname + "/views"))
 
-// path to public folder
+// ROUTES
+
+app.use('/product', productRouter)// app.use es para que se implemente 
+// con esto cada vez q llame a product en la ruta, con productRouter me redirecciona
+// en el codigo de la carpeta product.router.js
+
+
 app.use('/', express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
