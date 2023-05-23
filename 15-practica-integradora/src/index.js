@@ -7,6 +7,7 @@ import *as path from "path"
 import { Server } from 'socket.io'
 import { messageModel } from './models/Messages.js'
 import productRouter from './routes/product.routes.js'
+import cartRouter from './routes/cart.routes.js'
 
 // Config server
 const app = express()
@@ -57,7 +58,7 @@ app.set("views", path.resolve(__dirname + "/views"))
 app.use('/product', productRouter)// app.use es para que se implemente 
 // con esto cada vez q llame a product en la ruta, con productRouter me redirecciona
 // en el codigo de la carpeta product.router.js
-
+app.use('/cart', cartRouter)
 
 app.use('/', express.static(__dirname + '/public'))
 

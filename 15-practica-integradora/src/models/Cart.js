@@ -13,7 +13,7 @@ const cartSchema = new Schema({
                     type: Schema.Types.ObjectId,
                     ref: "products"
                 },
-                cant: Number
+                cantidad: Number
             }
         ],
         default: []//cada vez q creo un nuevo cart el valor de carrito sera vacio
