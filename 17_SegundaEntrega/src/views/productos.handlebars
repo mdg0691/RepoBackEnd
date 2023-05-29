@@ -1,0 +1,31 @@
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">title</th>
+          <th scope="col">description</th>
+          <th scope="col">price</th>
+          <th scope="col">thumbnail</th>
+          <th scope="col">code</th>
+          <th scope="col">stock</th>
+        </tr>
+      </thead>
+      <tbody id="data-output">
+        {{#each producto}}
+        
+          <tr>
+                {{!-- <th scope="row">#{{this.id}}</th> --}}
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>${{this.price}}</td>
+                <td>{{this.thumbnail}}</td>
+                <td>{{this.code}}</td>
+                <td>{{this.stock}}</td>
+            </tr>
+        
+        
+        {{/each}}
+      </tbody>
+
+    </table>        
+ 
