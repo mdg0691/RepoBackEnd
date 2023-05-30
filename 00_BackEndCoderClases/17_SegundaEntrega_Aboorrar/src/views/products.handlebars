@@ -1,0 +1,43 @@
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">title</th>
+          <th scope="col">description</th>
+          <th scope="col">price</th>
+          <th scope="col">thumbnail</th>
+          <th scope="col">code</th>
+          <th scope="col">stock</th>
+          <th scope="col">operations</th>
+        </tr>
+      </thead>
+      <tbody id="data-output">
+        {{#each docs}}
+        
+          <tr>
+            {{!-- @index es un indice del propio each que recorre hbs --}}
+                <th scope="row">{{@index}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>${{this.price}}</td>
+                <td>{{this.thumbnail}}</td>
+                <td>{{this.code}}</td>
+                <td>{{this.stock}}</td>
+                <td>
+                  <button>Delete</button>
+                </td>
+
+            </tr>
+        
+        
+        {{/each}}
+      </tbody>
+
+    </table>        
+
+<p>Lista de productos</p>
+<pre> // me permite visualizar todo el contenido que mongo me entrega
+  {{docs}}
+</pre>  
+

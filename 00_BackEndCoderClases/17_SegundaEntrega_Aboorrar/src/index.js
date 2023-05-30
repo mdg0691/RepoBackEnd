@@ -2,15 +2,12 @@ import 'dotenv/config'// con esta ya puedo usar mis variables de entorno
 import express from 'express'
 import mongoose from 'mongoose'
 import { engine } from 'express-handlebars'
-import handlebars from 'handlebars'
-import { allowInsecurePrototypeAccess} from '@handlebars/allow-prototype-access'
 import __dirname from './utils.js'
 import *as path from "path"
 import { Server } from 'socket.io'
 import { messageModel } from './models/Messages.js'
 import productRouter from './routes/product.routes.js'
 import cartRouter from './routes/cart.routes.js'
-// import productModel from './models/Products.js'
 
 // Config server
 const app = express()
@@ -27,6 +24,7 @@ mongoose.connect(process.env.URL_MONGODB_ATLAS)
 const server = app.listen(process.env.PORT, () => {
     console.log("Server on port", process.env.PORT)
 })
+
 
 //ServerIO Sockets
 
@@ -52,16 +50,9 @@ io.on('connection', (socket) => {
     })
 })
 // struct handlebars
-app.engine('handlebars', engine({
-    // importo handlebars y allowInsecurePrototypeAccess
-    //con esta propiedad -> handlebars: allowInsecurePrototypeAccess(handlebars) -> soluciono el siguiente error
-    //Handlebars: Access has been denied to resolve the property "title" because it is not an "own property" of its parent.
-    handlebars: allowInsecurePrototypeAccess(handlebars)
-}))//voy a trabajar con handlebars 
-
+app.engine('handlebars', engine())//voy a trabajar con handlebars 
 app.set('view engine', 'handlebars')// mis vistas son de hbs (handle barts)
 app.set("views", path.resolve(__dirname + "/views"))
-
 
 // ROUTES
 

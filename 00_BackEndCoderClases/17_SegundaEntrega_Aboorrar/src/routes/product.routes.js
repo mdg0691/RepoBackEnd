@@ -1,47 +1,50 @@
 import { Router } from 'express'// importo solo Router desde express para manejar las rutas
 import productModel from '../models/Products.js'
+// import { renderProds } from '../controllers/productsController'
+// import { paramsToObject } from '../controllers/productsController'
 
 const productRouter = Router() // voy a definir mis rutas con esta cte
 //Funcion utilizada para convertir key value paras a object key value params 
+
+// productRouter.get("/", renderProds )  
 const paramsToObject = (paramsString) => {
-    try{
-        const params = new URLSearchParams(paramsString);
-        const obj = {};
-        for (const [key, value] of params) {
-        obj[key] = value;
-        }
-        return obj;
-    }catch(error){
-        console.error(error);
-        throw new Error("Error occurred while converting params to object.");
-    }
-  }
-  
+            try{
+                const params = new URLSearchParams(paramsString);
+                const obj = {};
+                for (const [key, value] of params) {
+                obj[key] = value;
+                }
+                return obj;
+            }catch(error){
+                console.error(error);
+                throw new Error("Error occurred while converting params to object.");
+            }
+          }
 productRouter.get("/", async (req, res) => {
     try{
         const limit = (req.query.limit) || 10;
         const page = (req.query.page) || 1;
-        const sort = req.query.sort;
-        //Filtro 
+        const sort = req.query.sort
         const query = req.query.query
+        
         const paramsObject = paramsToObject(query)        
         // get 
-        // const products = await productModel.find()
-        const products = await productModel.paginate(paramsObject,{limit:limit,page:page,sort:sort})
+        
+        const products = await productModel.paginate(paramsObject,{ limit:limit,page:page,sort:sort})//.lean()
+        
         // const products = await productModel.find().lean()
         // lean()// funcion para ordenar los documentos pero no me sirven con paginate
     
         res.render("products", {  docs: products.docs })
-        
 
-        console.log(typeof(products))
-        console.log(products)
+        // console.log(typeof(products))
+        // console.log(products)
 
     }catch(error){
         console.error(error);
         res.status(500).json({ error: "An error occurred while fetching products." })
     }    
-})
+} )
 
 productRouter.get("/:id", async (req, res) => {
     try{
