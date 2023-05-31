@@ -1,15 +1,13 @@
 import { Router } from "express";
 import cartModel from "../models/Cart.js";
-import productModel from "../models/Products.js";
-import { Types } from 'mongoose';
 
 const cartRouter = Router()
 
 cartRouter.get("/", async (req, res) => {
     try{
-        const cartProducts = await cartModel.find()
+        const products = await cartModel.find()
+        res.render("cart", { docs: products })
         // res.send(products)
-        res.render("cart", {docs: cartProducts})
     }catch(error){
         console.error(error);
         throw new Error("Error occurred while getting carts.");
@@ -33,22 +31,14 @@ cartRouter.get("/:id", async (req, res) => {
 
 cartRouter.get("/addToCart/:id", async (req, res) => {
     try{
-        const { _id } = req.body
+        const { id } = req.params
         
-        const objectId = new Types.ObjectId(_id);
         const newProduct = {
-            id_prod: objectId,
-            cantidad: 2
+            id_prod: id,
         }
-
-        const cartProduct = new cartModel({
-            newProduct
-        })
-        cartProduct.save()
-        // cartModel.push(newProduct)
-        // cartProduct = await cartModel.save({products : {newProduct}})
-        // const cartProduct = await cartModel.create({products : [newProduct]})
-        res.render("cart",{docs:cartProduct})
+        const cart = await cartModel.create({products : [newProduct]})
+        res.render("cart", { docs: cart })
+        // res.send("carrito creado")
     }catch(error){
         console.error(error);
         throw new Error("Error occurred while posting cart.");    
