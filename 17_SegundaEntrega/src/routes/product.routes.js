@@ -1,59 +1,15 @@
 import { Router } from 'express'// importo solo Router desde express para manejar las rutas
 import productModel from '../models/Products.js'
+import { renderProducts } from '../controllers/products.controller.js'
+import { renderProductId } from '../controllers/products.controller.js'
+import { deleteProduct } from '../controllers/products.controller.js'
 
 const productRouter = Router() // voy a definir mis rutas con esta cte
 //Funcion utilizada para convertir key value paras a object key value params 
-const paramsToObject = (paramsString) => {
-    try{
-        const params = new URLSearchParams(paramsString);
-        const obj = {};
-        for (const [key, value] of params) {
-        obj[key] = value;
-        }
-        return obj;
-    }catch(error){
-        console.error(error);
-        throw new Error("Error occurred while converting params to object.");
-    }
-  }
-  
-productRouter.get("/", async (req, res) => {
-    try{
-        const limit = (req.query.limit) || 10;
-        const page = (req.query.page) || 1;
-        const sort = req.query.sort;
-        //Filtro 
-        const query = req.query.query
-        const paramsObject = paramsToObject(query)        
-        // get 
-        // const products = await productModel.find()
-        const products = await productModel.paginate(paramsObject,{limit:limit,page:page,sort:sort})
-        // const products = await productModel.find().lean()
-        // lean()// funcion para ordenar los documentos pero no me sirven con paginate
-    
-        res.render("products", {  docs: products.docs })
-        
 
-        console.log(typeof(products))
-        console.log(products)
+productRouter.get("/", renderProducts) // funcion get importada desde controllers, me trae los productos con pagination. 
 
-    }catch(error){
-        console.error(error);
-        res.status(500).json({ error: "An error occurred while fetching products." })
-    }    
-})
-
-productRouter.get("/:id", async (req, res) => {
-    try{
-        const id = (req.params.id)
-        const product = await productModel.findOne({_id: `${id}` })
-        const productJson = JSON.stringify(product) 
-        res.send(productJson)
-    }catch(error){
-        console.error(error);
-        res.status(500).json({ error: "An error occurred while fetching one product." })
-    }
-})
+productRouter.get("/:id", renderProductId )
 
 productRouter.post("/", async (req, res) => {
     try{
@@ -88,16 +44,7 @@ productRouter.put("/:id", async (req, res) => {
 })
 
 
-productRouter.delete("/:id", async (req, res) => {
-    try{
-        const id = req.params.id
-        await productModel.deleteOne({_id : `${id}`})
-        res.send("producto eliminado")
-    }catch(error){
-        console.error(error);
-        res.status(500).json({ error: "An error occurred while deleting products." })
-    }
-})
+productRouter.get("/delete/:id", deleteProduct)
 
 
 export default productRouter
