@@ -6,16 +6,14 @@ import handlebars from 'handlebars'
 import { allowInsecurePrototypeAccess} from '@handlebars/allow-prototype-access'
 import __dirname from './utils.js'
 import *as path from "path"
-import { Server } from 'socket.io'
-import { messageModel } from './models/Messages.js'
 import productRouter from './routes/product.routes.js'
 import cartRouter from './routes/cart.routes.js'
 import sessionRouter from './routes/session.routes.js'
 import userRouter from './routes/users.routes.js'
 import session from "express-session"
 import MongoStore from "connect-mongo"
-// import productModel from './models/Products.js'
-
+import passport from 'passport'
+import './passportStrategies.js'
 // Config server
 const app = express()
 
@@ -32,29 +30,7 @@ const server = app.listen(process.env.PORT, () => {
     console.log("Server on port", process.env.PORT)
 })
 
-//ServerIO Sockets
 
-const io = new Server(server)
-
-
-io.on('connection', (socket) => {
-    console.log("Cliente conectado")
-    socket.on("mensaje", info => {
-
-        //destructuring object info to send user and message to Atlas throug messageModel
-        const {usuario , mensaje} = info
-        const user = JSON.stringify(usuario)
-        const message = JSON.stringify(mensaje)
-        
- 
-        messageModel.create([
-            {
-                user: user,
-                message: message
-            }
-        ])
-    })
-})
 // struct handlebars
 app.engine('handlebars', engine({
     // importo handlebars y allowInsecurePrototypeAccess
@@ -65,6 +41,8 @@ app.engine('handlebars', engine({
 
 app.set('view engine', 'handlebars')// mis vistas son de hbs (handle barts)
 app.set("views", path.resolve(__dirname + "/views"))
+
+
 
 //configuracion de la session para guardar en Mongo
 app.use(session({
@@ -80,6 +58,10 @@ app.use(session({
     resave: true,
     saveUninitialized:true
 }))
+
+//passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // ROUTES
 
