@@ -1,0 +1,17 @@
+Marce! muy bien por no solo corregir, sino modularizar y optimizar el trabajo!
+
+Estoy seguro que vas a tener un muy buen proyecto final!
+
+
+
+Como detalles para ir de a poco mejorando, es que lo ideal y buena práctica que los res.status.send de error esten en routes no en controllers, en controllers devolves el throw new error y en la ruta usas el catch error, con el res.status y asi... me explico? avisa!
+
+
+
+y, no te olvides de esto!!
+
+
+
+Estas haciendo un cart model. create, y vos deberias hacer un update, y tener desde req.params el cart id
+
+o sea la ruta seria /cart/:cartId/addToCart/:productId

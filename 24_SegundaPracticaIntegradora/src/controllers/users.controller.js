@@ -1,5 +1,5 @@
 import { userModel } from "../models/User.js";
-import { hashData, compereData } from "../utils/utils.js";
+import { hashData, compereData } from "../utils/bcrypt.js";
 
 export const registerUser = async (req,res, next) =>{
         try {
@@ -33,6 +33,7 @@ export const loginUsers = async (req,res) => {
         if(!isPasswordValid){
             return res.redirect('/api/session/errorLogin')
         }
+        req.session.user = user
 
         res.redirect("/api/session/profile")
         // res.redirect("/api/");

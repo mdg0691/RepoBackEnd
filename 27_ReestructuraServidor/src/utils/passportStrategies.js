@@ -1,7 +1,7 @@
 import passport from "passport";
-import { userModel } from "../models/User.js";
+import { userModel } from "../DB/models/User.js";
 import { Strategy as LocalStrategy } from "passport-local"; // renombro con as , para diferenciar los diferentes strategies
-import { compereData } from "./utils.js";
+import { compereData } from "./bcrypt.js";
 import { Strategy as GibHubStrategy } from "passport-github2";
 
 //Estrategia passport Local

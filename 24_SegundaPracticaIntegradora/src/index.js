@@ -4,12 +4,13 @@ import mongoose from 'mongoose'
 import { engine } from 'express-handlebars'
 import handlebars from 'handlebars'
 import { allowInsecurePrototypeAccess} from '@handlebars/allow-prototype-access'
-import __dirname from './utils.js'
+import __dirname from './utils/utils.js'
 import *as path from "path"
 import productRouter from './routes/product.routes.js'
 import cartRouter from './routes/cart.routes.js'
 import sessionRouter from './routes/session.routes.js'
 import userRouter from './routes/users.routes.js'
+import cookieParser from 'cookie-parser'
 import session from "express-session"
 import MongoStore from "connect-mongo"
 import passport from 'passport'
@@ -30,6 +31,8 @@ const server = app.listen(process.env.PORT, () => {
     console.log("Server on port", process.env.PORT)
 })
 
+//configuracion de cookies
+app.use(cookieParser())
 //configuracion de la session para guardar en Mongo
 app.use(session({
     store: MongoStore.create({

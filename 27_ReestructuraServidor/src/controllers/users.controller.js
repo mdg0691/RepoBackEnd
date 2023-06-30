@@ -1,5 +1,9 @@
-import { userModel } from "../models/User.js";
-import { hashData, compereData } from "../utils/utils.js";
+import { findAll,findById,createOne } from "../services/user.services.js";
+import { userModel } from "../DB/models/User.js";
+import { hashData, compereData } from "../utils/bcrypt.js";
+
+
+
 
 export const registerUser = async (req,res, next) =>{
         try {
