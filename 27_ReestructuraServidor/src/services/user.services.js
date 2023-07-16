@@ -1,5 +1,5 @@
-import UserManager from "../DB/user.manager";
-import { hashData } from "../utils/bcrypt";
+import UserManager from "../DB/user.manager.js";
+import { hashData } from "../utils/bcrypt.js";
 
 const userManager = new UserManager();
 

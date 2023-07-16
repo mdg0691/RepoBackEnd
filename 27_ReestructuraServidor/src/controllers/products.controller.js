@@ -1,4 +1,4 @@
-import productModel from "../DB/models/Products.js";
+import productModel from "../DB/mongoDB/models/Products.js";
 // Funcion para convertir parametro a objects
 export const paramsToObject = (paramsString) => {
     try{

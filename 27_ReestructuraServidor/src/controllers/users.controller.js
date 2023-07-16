@@ -1,47 +1,41 @@
-import { findAll,findById,createOne } from "../services/user.services.js";
-import { userModel } from "../DB/models/User.js";
-import { hashData, compereData } from "../utils/bcrypt.js";
+import { findAll, findById, createOne } from '../services/user.services.js'
 
-
-
-
-export const registerUser = async (req,res, next) =>{
-        try {
-        const { email, password } = req.body;
-      
-        const user = await userModel.findOne({email})
-        console.log(user)
-        if(user){
-            return res.redirect('/api/session/errorRegister')
-        }
-        const hashPassword = await hashData(password)
-        const newUser = new userModel({...req.body, password:hashPassword})
-        // console.log(newUser)
-        await newUser.save()
-        res.redirect("/api/session");
+export const findAllUsers = async (req, res) => {
+  try {
+    const users = await findAll()
+    if (users.length) {
+      res.status(200).json({ message: 'Users found', users })
+    } else {
+      res.status(200).json({ message: 'No users' })
     }
-    catch(error){
-        return next(error)
-    }
+  } catch (error) {
+    res.status(500).json({ error })
+  }
 }
 
-export const loginUsers = async (req,res) => {
-        try{
-        const { email, password } = req.body;
-        const user = await userModel.findOne({email})
-        if(!user){
-            return res.redirect('/api/session/errorLogin')
-        }
-        const isPasswordValid = await compereData(password, user.password)
-        console.log(isPasswordValid)
-        if(!isPasswordValid){
-            return res.redirect('/api/session/errorLogin')
-        }
+export const findOneUser = async (req, res) => {
+  const { id } = req.params
+  try {
+    const user = await findById(id)
+    if (user) {
+      res.status(200).json({ message: 'User found', user })
+    } else {
+      res.status(400).json({ message: 'No user' })
+    }
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
 
-        res.redirect("/api/session/profile")
-        // res.redirect("/api/");
-    }
-    catch(error){
-        console.log(error)
-    }
+export const createOneUser = async (req, res) => {
+  const { first_name, last_name, email, password } = req.body
+  if (!first_name || !last_name || !email || !password) {
+    return res.status(400).json({ message: 'Data missing' })
+  }
+  try {
+    const newUser = await createOne(req.body)
+    res.status(200).json({ message: 'User create', user: newUser })
+  } catch (error) {
+    res.status(500).json({ error })
+  }
 }

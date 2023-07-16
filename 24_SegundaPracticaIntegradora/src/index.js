@@ -8,13 +8,13 @@ import __dirname from './utils/utils.js'
 import *as path from "path"
 import productRouter from './routes/product.routes.js'
 import cartRouter from './routes/cart.routes.js'
-import sessionRouter from './routes/session.routes.js'
 import userRouter from './routes/users.routes.js'
 import cookieParser from 'cookie-parser'
 import session from "express-session"
 import MongoStore from "connect-mongo"
 import passport from 'passport'
 import './passportStrategies.js'
+import viewsRouter from '../../27_ReestructuraServidor/src/routes/views.routes.js'
 // Config server
 const app = express()
 
@@ -72,7 +72,7 @@ app.use('/products', productRouter)// app.use es para que se implemente
 // en el codigo de la carpeta product.router.js
 app.use('/cart', cartRouter)
 
-app.use('/api/session', sessionRouter)
+app.use('/api/views', viewsRouter)
 app.use('/api/users', userRouter)
 
 app.use('/', express.static(__dirname + '/public'))

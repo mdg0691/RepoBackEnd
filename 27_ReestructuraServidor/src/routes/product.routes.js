@@ -1,5 +1,5 @@
 import { Router } from 'express'// importo solo Router desde express para manejar las rutas
-import productModel from '../DB/models/Products.js'
+import productModel from '../DB/mongoDB/models/Products.js'
 import { renderProducts } from '../controllers/products.controller.js'
 import { renderProductId } from '../controllers/products.controller.js'
 import { deleteProduct } from '../controllers/products.controller.js'

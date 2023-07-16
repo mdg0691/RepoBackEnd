@@ -1,28 +1,17 @@
 import { Router } from "express";
-import { userModel } from "../DB/models/User.js";
+import { githubRedirect, loginGithub, loginPassport, registerUser } from "../controllers/session.controller.js";
 
 const sessionRouter = Router();
 
-// vista para registrar usuarios
+sessionRouter.post("/register", registerUser);
+//login sin passport
+// sessionRouter.post("/login", loginUsers);
 
-sessionRouter.get('/', (req,res) => {
-  res.render('partials/session/login')
-})
+// login con passport
+sessionRouter.post("/login",loginPassport);
 
-sessionRouter.get("/register", (req, res) => {
-  res.render("partials/session/register");
-});
+sessionRouter.get("/githubSignup",loginGithub);
 
-sessionRouter.get('/errorLogin',(req,res) => {
-  res.render('partials/session/errorLogin')
-})
 
-sessionRouter.get('/errorRegister',(req,res) => {
-  res.render('partials/session/errorRegister')
-})
-
-sessionRouter.get('/profile',(req,res) => {
-  res.render('partials/session/profile')
-})
-
+sessionRouter.get('/github', githubRedirect);
 export default sessionRouter;

@@ -1,4 +1,4 @@
-import { userModel } from "./models/User.js";
+import { userModel } from "./mongoDB/models/User.js";
 
 export default class UserManager {
   async findAll() {
@@ -9,9 +9,9 @@ export default class UserManager {
       return error;
     }
   }
-  async finOneById() {
+  async finOneById(id) {
     try {
-      const user = await userModel.findById();
+      const user = await userModel.findById(id);
       return user;
     } catch (error) {
       return error;

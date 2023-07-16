@@ -1,5 +1,5 @@
 import { Router } from "express";
-import cartModel from "../DB/models/Cart.js";
+import cartModel from "../DB/mongoDB/models/Cart.js";
 import mongoose from "mongoose";
 
 const cartRouter = Router()

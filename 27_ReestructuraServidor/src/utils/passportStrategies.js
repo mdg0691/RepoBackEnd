@@ -1,5 +1,5 @@
 import passport from "passport";
-import { userModel } from "../DB/models/User.js";
+import { userModel } from "../DB/mongoDB/models/User.js";
 import { Strategy as LocalStrategy } from "passport-local"; // renombro con as , para diferenciar los diferentes strategies
 import { compereData } from "./bcrypt.js";
 import { Strategy as GibHubStrategy } from "passport-github2";
