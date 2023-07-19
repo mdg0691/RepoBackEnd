@@ -4,6 +4,7 @@ class ProductsService {
   async findAllProducts() {
     try {
       const response = await productsMongo.findAll();
+      return response
     } catch (error) {
       return error;
     }

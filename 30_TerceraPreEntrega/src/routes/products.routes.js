@@ -1,13 +1,12 @@
 import { Router } from "express";
 import { productController } from "../controllers/products.controller.js";
-// import { verifyToken } from "../middlewares/auth.js";
-import { authToken } from "../utils/jwt.js";
+import { authJwt } from "../middlewares/index.js";
 
 const productRouter = Router();
 
 productRouter.get("/", productController.findAllProducts);
-productRouter.get("/:idUser", productController.findOneProduct);
-productRouter.post("/", authToken,productController.createOneProduct);
-productRouter.delete("/:idUser", productController.deleteProduct);
+productRouter.get("/:productId", productController.findOneProduct);
+productRouter.post("/", [authJwt.authToken,authJwt.isAdmin],productController.createOneProduct);
+productRouter.delete("/:productId",[authJwt.authToken,authJwt.isAdmin],productController.deleteProduct);
 
 export default productRouter;

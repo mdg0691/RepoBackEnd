@@ -1,8 +1,8 @@
 import Role from "../DAL/mongoDB/models/role.model.js";
 import { usersModel } from "../DAL/mongoDB/models/users.model.js";
+import { authJwt } from "../middlewares/index.js";
 import { usersService } from "../services/users.service.js";
 import { compereData } from "../utils/bcryp.js";
-import { generateToken } from "../utils/jwt.js";
 export const signUp = async (req, res) => {
   const { first_name, last_name, email, password,roles } = req.body;
   const newUser = {
@@ -46,9 +46,10 @@ export const signIn = async (req, res) => {
   const filter = {email:req.body.email}
   // const userFound = await usersService.findOneUser(filter)
   const userFound = await usersModel.findOne(filter).populate("roles")
+  console.log(userFound);
   if(!userFound) return res.status(400).json({message: "User not found"})
   const matchPassword = await compereData(req.body.password,userFound.password)
   if(!matchPassword) return res.status(401).json({token:null,message:'invalid Password'})
-  const token = generateToken(userFound)
+  const token = authJwt.generateToken(userFound)
   res.json({token})
 };

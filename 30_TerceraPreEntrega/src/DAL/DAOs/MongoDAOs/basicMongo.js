@@ -5,20 +5,23 @@ export default class BasisMongo{
     async findAll(){
         try{
             const response = await this.model.find()
+            return response
         }catch(error){
             return error
         }
     }
     async findOne(arg1){
         try{
-            const response = await this.model.findOne(arg1)
+            const response = await this.model.findOne({email:arg1})
+            return response
         }catch(error){
             return error
         }
     }
     async findOneById(id){
         try{
-            const response = await this.model.find(id)
+            const response = await this.model.findById(id)
+            return response
         }catch(error){
             return error
         }
