@@ -19,15 +19,17 @@ class MessagesController{
         }
     }
     async createOneMessages(req,res){
-        const {message,user}=req.body
-        if(!message||!user){
+        const {message,userId}=req.body
+        
+        if(!message||!userId){
             res.status(501).json({message:'Some data is missing'})
         }
+        console.log(req.body);
         try{
-            const newMessage = await messagesService.createOneMessage(req.body)
+            const newMessage = await messagesService.createOneMessages(req.body)
             res.status(200).json({message:'Message Created',newMessage})
         }catch(error){
-            res.status(500).json({message:'Error',error})
+            res.status(500).json({message:'Error Controller',error})
         }
     }
 

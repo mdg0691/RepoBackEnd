@@ -10,11 +10,12 @@ class ProductsController{
         }
     }
     async findOneProduct(req,res){
-        const {idProduct}= req.params
+        const {productId}= req.params
         try{
-            const response = await productsService.findOneProducts(idProduct)
+            const response = await productsService.findOneProducts(productId)
+            res.status(200).json({message:'Product', response})
         }catch(error){
-            res.status(500).json({message:'Error',error})
+            res.status(500).json({message:'Error controller',error})
         }
     }
     async createOneProduct(req,res){

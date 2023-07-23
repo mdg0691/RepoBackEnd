@@ -29,16 +29,16 @@ export const signUp = async (req, res) => {
     newUser.roles = [role._id]
   }
   try {
-    console.log(newUser)
+    
     const savedUser = await usersService.createOneUser(newUser);
     // res.status(200).json({ message: "User Created", user: newUser });
-
-    //creo token con jwt
-    const token = generateToken(savedUser)
     
+    //creo token con jwt
+    const token = authJwt.generateToken(savedUser)
+    console.log(token)
     res.status(200).json({message:'generated token',token})
   } catch (error) {
-    res.status(500).json({ message: "Error", error });
+    res.status(500).json({ message: "Error controller", error });
   }
 };
 

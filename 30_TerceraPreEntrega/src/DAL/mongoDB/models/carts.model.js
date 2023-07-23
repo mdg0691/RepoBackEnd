@@ -27,10 +27,10 @@ const cartSchema = new Schema({
 })
 
 // utilizo midlewere para anticipar la busqueda y obtener la referencia del id product 
-cartSchema.pre('find',function(){
-    this.populate('products')
-    this.populate('userId')
-})
-const cartModel = model("carts", cartSchema )
+// cartSchema.pre('find',function(){
+//     this.populate('products')
+//     this.populate('userId')
+// })
+// const cartModel = model("carts", cartSchema )
 // exporto para crear nuevos carritos, 
-export default cartModel
+export const cartModel = model("carts", cartSchema )

@@ -1,10 +1,10 @@
-import { messageModel } from "../DAL/DAOs/MongoDAOs/messagesMongo.js";
+import { messageModel } from "../DAL/mongoDB/models/message.model.js";
 
 class MessagesService {
   async findAllMessages() {
     try {
         console.log('prueba');
-      const response = await messageModel.findAll();
+      const response = await messageModel.find()
       console.log(response)
       return response
     } catch (error) {
@@ -21,7 +21,8 @@ class MessagesService {
   }
   async createOneMessages(message) {
     try {
-      const response = await messageModel.createOne(message);
+
+        const response = await messageModel.create(message);
       return response;
     } catch (error) {
       return error;

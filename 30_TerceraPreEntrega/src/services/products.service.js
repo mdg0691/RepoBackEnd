@@ -25,6 +25,14 @@ class ProductsService {
       return error;
     }
   }
+  async updatedProduct(objectId,product) {
+    try {
+      const response = await productsMongo.findOneUpdated(objectId,product);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
   async deleteOneProduct(id) {
     try {
       const response = await productsMongo.deleteOne(id);

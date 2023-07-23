@@ -6,7 +6,7 @@ const userRouter = Router();
 
 userRouter.get("/", usersController.findAllUsers);
 userRouter.get("/:idUser", usersController.findOneUser);
-userRouter.post("/", usersController.createOneUser);
+// userRouter.post("/", usersController.createOneUser);
 userRouter.delete("/:idUser", [authJwt.authToken,authJwt.isAdmin],usersController.deleteOne);
 
 export default userRouter;

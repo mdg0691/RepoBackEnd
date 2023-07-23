@@ -20,7 +20,15 @@ export default class BasisMongo{
     }
     async findOneById(id){
         try{
-            const response = await this.model.findById(id)
+            const response = await this.model.findById({_id:id})
+            return response
+        }catch(error){
+            return error
+        }
+    }
+    async findOneUpdated(objId,obj){
+        try{
+            const response = await this.model.updateOne({"_id":objId},{$set: obj})
             return response
         }catch(error){
             return error

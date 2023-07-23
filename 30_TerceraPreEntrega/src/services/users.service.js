@@ -28,10 +28,13 @@ class UsersService {
     try {
       const hashPassword = await hashData(user.password);
       const newUser = { ...user, password: hashPassword };
+      
       const response = await usersMongo.createOne(newUser);
+      console.log('paso services');
+      console.log(response);
       return response;
     } catch (error) {
-      return error;
+      return json({ message: "Error services", error });;
     }
   }
   async deleteOneUser(id) {
