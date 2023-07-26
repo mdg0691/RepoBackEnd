@@ -1,0 +1,19 @@
+{
+  "name": "32_mocking_manejoerrores",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/app.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "routes": "^2.1.0"
+  }
+}
