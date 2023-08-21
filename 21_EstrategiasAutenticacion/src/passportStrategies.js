@@ -1,8 +1,9 @@
 import passport from "passport";
-import { userModel } from "../models/User.js";
+import { userModel } from "./models/User.js";
 import { Strategy as LocalStrategy } from "passport-local"; // renombro con as , para diferenciar los diferentes strategies
-import { compereData } from "./utils.js";
+import { compereData } from "./utils/bcrypt.js";
 import { Strategy as GibHubStrategy } from "passport-github2";
+import { Strategy as GmailStrategy } from "passport-google-oauth20";
 
 //Estrategia passport Local
 
@@ -47,6 +48,39 @@ passport.use(
       clientID: "Iv1.f014454e10871dec",
       clientSecret: "9171dcd01e6fd3ddc18aef88ecb3aadcfee3811f",
       callbackURL: "http://localhost:4000/api/users/github",
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
+      const { name, email } = profile._json;
+      console.log(profile);
+
+      try {
+        const userDB = await userModel.findOne({ email });
+        if (userDB) {
+          return done(null, userDB);
+        }
+        const user = {
+          first_name: name !== null ? (name.split(' ')[0] || '') : '',
+          last_name: name !== null ? (name.split(' ')[1] || '') : '',
+          email : email,
+          password: " ",
+        };
+        console.log(user);
+        const newUserDB = await userModel.create(user);
+        done(null, newUserDB);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
+passport.use(
+  "googleSignup",
+  new GmailStrategy(
+    {
+      clientID: "823429520334-rih44nnic8r7s3d2ft1egshd49ab2n3k.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "http://localhost:8080/api/auth/google",
     },
     async (accessToken, refreshToken, profile, done) => {
       console.log(profile);

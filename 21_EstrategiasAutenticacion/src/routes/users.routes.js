@@ -16,10 +16,21 @@ userRouter.post("/login",
   })
 );
 
-userRouter.get("/githubSignup",
+
+userRouter.get("/googleSignup",
+  passport.authenticate("googleSignup", { scope: ["profile"] })
+);
+userRouter.get('/googleSignup', 
+  passport.authenticate('googleSignup', { failureRedirect: '/api/session' }),
+  function(req, res) {
+    // console.log(req)
+    // const user = req.body
+    // Successful authentication, redirect home.
+    res.redirect("/api/session/profile")
+  });
+  userRouter.get("/githubSignup",
   passport.authenticate("githubSignup", { scope: ["user:email"] })
 );
-
 userRouter.get('/github', 
   passport.authenticate('githubSignup', { failureRedirect: '/api/session' }),
   function(req, res) {

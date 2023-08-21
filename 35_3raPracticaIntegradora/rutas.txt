@@ -1,0 +1,12 @@
+-http://localhost:8080/api/products
+    ruta para crear,actualizar,borrar y obtener productos
+-http://localhost:8080/api/auth
+    ruta para la creacion de usuarios y autenticacion 
+-http://localhost:8080/api/users
+    ruta para crear,actualizar,borrar y obtener usuarios
+-http://localhost:8080/api/messages
+    ruta para crear,actualizar,borrar y obtener mensajes
+-http://localhost:8080/api/carts
+    ruta para crear,actualizar,borrar y obtener carritos
+-http://localhost:8080/api/tickets
+    ruta para crear,actualizar,borrar y obtener tickets

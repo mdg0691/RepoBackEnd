@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import { engine } from 'express-handlebars'
 import handlebars from 'handlebars'
 import { allowInsecurePrototypeAccess} from '@handlebars/allow-prototype-access'
-import __dirname from './utils.js'
+import __dirname from './utils/utils.js'
 import *as path from "path"
 import productRouter from './routes/product.routes.js'
 import cartRouter from './routes/cart.routes.js'
@@ -61,7 +61,7 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars')// mis vistas son de hbs (handle barts)
 app.set("views", path.resolve(__dirname + "/views"))
 
-
+console.log(__dirname);
 // ROUTES
 
 app.use('/products', productRouter)// app.use es para que se implemente 
