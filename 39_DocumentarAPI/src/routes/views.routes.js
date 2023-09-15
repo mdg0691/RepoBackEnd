@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { renderProducts } from "../controllers/views.controller.js";
 
 const viewsRouter = Router();
 
@@ -24,4 +25,12 @@ viewsRouter.get('/profile',(req,res) => {
   res.render('partials/session/profile')
 })
 
+viewsRouter.get('/forgot-password',(req,res) => {
+  res.render('partials/session/forgotPassword')
+})
+viewsRouter.get('/reset-password/:id',(req,res) => {
+  const user= req.params
+  res.render('partials/session/resetPassword',{user})
+})
+viewsRouter.get('/products',renderProducts)
 export default viewsRouter;

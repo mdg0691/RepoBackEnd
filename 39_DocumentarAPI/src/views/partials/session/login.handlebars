@@ -1,6 +1,6 @@
 <h1>Iniciar Sesion</h1>
 
-<form action="/api/users/login" method="post">
+<form action="/api/auth/singin" method="post">
     email: <input type="text" name="email"><br>
     password: <input type="text" name="password"><br>
     <input type="submit" value="login">
@@ -9,5 +9,6 @@
 <h2>New User</h2>
 
 <button onclick="location.href='/api/session/register'">REGISTER</button>
+<button onclick="location.href='/api/views/forgot-password'">FORGOT PASSWORD</button>
 <button onclick="location.href='/api/auth/githubSignup'">GITHUB</button>
 <button onclick="location.href='/api/auth/googleSignup'">GMAIL</button>

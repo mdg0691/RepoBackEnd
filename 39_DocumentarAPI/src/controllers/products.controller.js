@@ -1,6 +1,14 @@
 import { productsService } from '../services/products.service.js'
 
 class ProductsController{
+
+    constructor() {
+        // Bind instance methods to the class instance
+        this.findAllProducts = this.findAllProducts.bind(this);
+        this.findOneProduct = this.findOneProduct.bind(this);
+        this.createOneProduct = this.createOneProduct.bind(this);
+        this.deleteProduct = this.deleteProduct.bind(this);
+    }
     async findAllProducts(req,res){
         try{
             const allProducts = await productsService.findAllProducts()

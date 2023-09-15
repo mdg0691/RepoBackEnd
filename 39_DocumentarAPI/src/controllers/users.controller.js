@@ -2,6 +2,7 @@ import { usersService } from "../services/users.service.js";
 
 class UserController {
     async findAllUsers(req,res){
+        console.log(req.headers);
         try{
             const allUsers = await usersService.findAllUsers()
             res.status(200).json({message:'Users',allUsers})
@@ -30,6 +31,15 @@ class UserController {
             res.status(500).json({message: 'Error',error})
         }
     }
+    async updatedOne(req,res){
+        const {idUser} = req.params
+        try{
+            const user = await usersService.deleteOneUser(idUser)
+            res.status(200).json({message:'User Deleted',user})
+        }catch(error){
+            res.status(500).json({message: 'Error',error})
+        }
+    }
     async deleteOne(req,res){
         const {idUser} = req.params
         try{
@@ -39,6 +49,7 @@ class UserController {
             res.status(500).json({message: 'Error',error})
         }
     }
+    
     async deleteAll(req,res){
         try{
             await usersService.deleteAll()
@@ -49,4 +60,4 @@ class UserController {
     }
 }
 
-export const usersController = new UserController()
+export const  usersController = new UserController()

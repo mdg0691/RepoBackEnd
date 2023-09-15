@@ -9,5 +9,6 @@ export default {
     gmail_user:process.env.GMAIL_USER,
     gmail_password:process.env.GMAIL_PASSWORD,
     jwt_cookie:process.env.JWT_COOKIE,
-    jwt_secret:process.env.JWT_SECRET
+    jwt_secret:process.env.JWT_SECRET,
+    jwt_refresh_secret:process.env.JWT_REFRESH_SECRET
 }

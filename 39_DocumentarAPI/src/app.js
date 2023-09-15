@@ -3,7 +3,7 @@ import config from './config/config.js'
 import './config/configDB.js'
 import cookieParser from 'cookie-parser'
 import { engine } from 'express-handlebars'
-import __dirname from '../../35_3raPracticaIntegradora/src/utils/utils.js'
+import __dirname from '../src/utils/utils.js'
 import userRouter from './routes/users.routes.js'
 import productRouter from './routes/products.routes.js'
 import authRouter from './routes/auth.routes.js'
@@ -15,6 +15,8 @@ import router from './routes/email.routes.js'
 import viewsRouter from './routes/views.routes.js'
 import swagerJsdoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
+import cors from 'cors'
+
 
 const swaggerOptions ={
     definition:{
@@ -31,18 +33,23 @@ const swaggerOptions ={
     },
     apis:[`${__dirname}/docs/**/*.yaml`]
 }
-
-console.log(__dirname)
 const spec = swagerJsdoc(swaggerOptions)
 
-//configuro servidor
+// configuro servidor
 const app = express()
 createRoles();
+
+app.use(cors({
+    origin:'http://localhost:3000',
+    credentials:true
+}))
 app.use(express.json())// desde express utilizo los obj json que llevan al servidor
 app.use(express.urlencoded({extended:true}))
 
 const PORT = config.port
-
+app.listen(PORT, () => {
+    console.log(`Escuchando el puerto ${PORT}`)
+})
 
 //Inicializo cookkies como midlewere
 app.use(cookieParser())
@@ -56,8 +63,9 @@ app.engine('handlebars', engine({
 
 
 app.set('view engine', 'handlebars')// mis vistas son de hbs (handle barts)
-app.set("views", (__dirname + "/views"))
 
+app.set('views', (__dirname +'/views'))
+console.log(__dirname)
 app.use('/', express.static(__dirname + '/public'))
 
 // configuro routers
@@ -69,10 +77,11 @@ app.use('/api/carts', cartsRouter)
 app.use('/api/tickets', ticketsRouter)
 app.use('/api/correo', router)
 app.use('/api/views', viewsRouter)
+// app.use('/api/', (req,res) => {
+//     res.send("api conectada prueba")
+// })
 app.use('/apidocs', swaggerUiExpress.serve , swaggerUiExpress.setup(spec))
 
 
 
-app.listen(PORT, () => {
-    console.log(`Escuchando el puerto ${PORT}`)
-})
+

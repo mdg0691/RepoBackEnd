@@ -4,6 +4,7 @@ class UsersService {
   async findAllUsers() {
     try {
       const response = await usersMongo.findAll();
+      return response
     } catch (error) {
       return error;
     }
@@ -30,11 +31,18 @@ class UsersService {
       const newUser = { ...user, password: hashPassword };
       
       const response = await usersMongo.createOne(newUser);
-      console.log('paso services');
-      console.log(response);
       return response;
     } catch (error) {
       return json({ message: "Error services", error });;
+    }
+  }
+
+  async findOneAndUpdate(id, user) {
+    try {
+      const response = await usersMongo.findOneUpdated(id,user);
+      return response;
+    } catch (error) {
+      return error;
     }
   }
   async deleteOneUser(id) {

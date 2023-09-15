@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       requerid: true,
     },
+    lastname:{
+      type: String,
+      requerid: true,
+    },
     email: {
       type: String,
       requerid: true,
@@ -15,17 +19,20 @@ const userSchema = new mongoose.Schema(
       type: String,
       requerid: true,
     },
-    roles: [
-      {
+    roles: [{
         type: Schema.Types.ObjectId,
-        ref: "Role",
-      },
-    ],
+        ref: "Role"
+      }]
   },
   {
     timestamps: true,
     versionKey: false,
   }
 );
+
+userSchema.pre('find', function(next) {
+  this.populate('roles')
+  next()
+});
 
 export const usersModel = mongoose.model("Users", userSchema);

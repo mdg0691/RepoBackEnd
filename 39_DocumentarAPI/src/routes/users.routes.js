@@ -4,9 +4,9 @@ import { authJwt } from "../middlewares/index.js";
 
 const userRouter = Router();
 
-userRouter.get("/", usersController.findAllUsers);
+userRouter.get("/",authJwt.authToken, usersController.findAllUsers);
 userRouter.get("/:idUser", usersController.findOneUser);
-// userRouter.post("/", usersController.createOneUser);
+userRouter.post("/", usersController.createOneUser);
 userRouter.delete("/:idUser", [authJwt.authToken,authJwt.isAdmin],usersController.deleteOne);
 userRouter.delete("/delete",[authJwt.authToken,authJwt.isAdmin],usersController.deleteAll);
 
