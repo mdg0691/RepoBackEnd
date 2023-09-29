@@ -1,0 +1,44 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtener todos los usuarios de la BD
+      responses:
+        "200":
+          description: Si la consulta a los usuarios es satisfactoria
+          content:
+            aplication/json:
+              schemas:
+                $ref: '#components/schemas/User'
+
+        "500":
+          description: Si hubo un error en el momento de la consulta 
+components:
+  schemas:
+    User: 
+      type: Object
+      properties:
+        _id:  
+          type: ObjectId
+          description: ID auto incrementable
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+      example:
+        _id: ObjectId(123aklsjdf45)
+        first_name: Martin
+        last_name: Perez
+    UsersResponses:
+      type: Object
+      properties:
+        status:
+          type: string,
+          enum: [succes,error]
+          description: formas de respuestas
+        payload:
+          type: array,
+          description: array de usuarios
+          item: 
+            $ref: '#components/schemas/User'
