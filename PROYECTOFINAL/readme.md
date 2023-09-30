@@ -181,7 +181,7 @@ La carpeta `client` de este repositorio contiene la aplicación frontend desarro
 
 La aplicación frontend estará disponible en tu navegador en http://localhost:3000. Puedes usar esta interfaz para interactuar con el backend y probar las funcionalidades del proyecto E-Commerce.
 
-## Capturas de pantalla
+## GIFT
 ![](public/backend.gif)
 
 PROYECTOFINAL\public\backend.gif
