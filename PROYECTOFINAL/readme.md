@@ -1,6 +1,6 @@
 # Proyecto E-Commerce
 
-Este proyecto es una aplicación de comercio electrónico desarrollada con Node.js y Express. Proporciona una serie de rutas y funcionalidades para administrar usuarios, productos, carritos de compras, tickets y autenticación.
+Este proyecto es una aplicación de comercio electrónico desarrollada con Node.js y Express. Proporciona una serie de rutas y funcionalidades para administrar usuarios, productos, carritos de compras, tickets y autenticación. Tambien cuenta con una aplicacion de front-end React para una mejor experiencia de usuario
 
 ## Cómo ejecutar el proyecto
 
@@ -168,17 +168,28 @@ A continuación, se detallan los principales endpoints de la API junto con una b
 
 - `DELETE /api/tickets/:id`: Elimina un ticket específico.
 
+## Aplicación Frontend
+
+La carpeta `client` de este repositorio contiene la aplicación frontend desarrollada con React. Puedes iniciarla siguiendo estos pasos:
+
+1. Abre una terminal en la carpeta `client` del proyecto.
+
+   ```bash
+   cd client
+   npm install
+   npm start
+
+La aplicación frontend estará disponible en tu navegador en http://localhost:3000. Puedes usar esta interfaz para interactuar con el backend y probar las funcionalidades del proyecto E-Commerce.
+
 ## Capturas de pantalla
+![](public/backend.gif)
 
-A continuación, se muestran algunas capturas de pantalla de la aplicación en funcionamiento:
+PROYECTOFINAL\public\backend.gif
 
-- Inserta aquí tus capturas de pantalla junto con descripciones relevantes.
 
 ## Contacto
 
-Si tienes alguna pregunta o comentario sobre el proyecto, no dudes en ponerte en contacto con el desarrollador:
+- Nombre: Marcelo Gonzalez
+- Correo electrónico: mdgonzalez470@gmail.com
 
-- Nombre: Marcelo
-- Correo electrónico: marcelo@gmail.com
-
-¡Gracias por explorar este proyecto E-Commerce! Esperamos que sea útil para tus necesidades de desarrollo.
+Gracias por explorar este proyecto E-Commerce! Esperamos que sea útil para tus necesidades de desarrollo.
