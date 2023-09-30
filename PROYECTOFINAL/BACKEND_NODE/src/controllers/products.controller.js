@@ -43,11 +43,12 @@ class ProductsController {
       const cartIdwithProduct = await cartModel.find({
         "products.id_prod": productId,
       });
-      // console.log(cartIdwithProduct);
+
+      // Itero los cart que contiene el producto eliminado
       for (const cartId of cartIdwithProduct) {
         try {
-          console.log("elementos", cartId.products.id_prod);
           const userId = cartId.userId;
+          // obtengo el id del usuario del carrito para enviar mail de notificacion producto eliminado
           const user = await usersService.findOneById(userId);
           await trasporter.sendMail({
             to: user.email,

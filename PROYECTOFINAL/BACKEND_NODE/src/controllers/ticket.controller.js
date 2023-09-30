@@ -19,10 +19,7 @@ class TicketController {
         }
     }
     async createOneTicket(req,res){
-        const {code,amount,user}=req.body
-        if(!code||!amount||!user){
-            res.status(401).json({message:'Some data is missing'})
-        }
+      console.log(req.body);
         try{
             const newTicket = await ticketService.createTicket(req.body)
             res.status(200).json({message:'Ticket Created', ticket:newTicket})

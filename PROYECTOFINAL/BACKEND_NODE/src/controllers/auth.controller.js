@@ -50,7 +50,6 @@ export const signIn = async (req, res) => {
   try {
     const {email,password} = req.body  
     const userFound = await usersService.findOneUser(email)
-    console.log(userFound);
     if(!userFound) return res.status(401).json({message:["Usser no found"]});
     const matchPassword = await compereData(password,userFound.password)
     if(!matchPassword) return res.status(401).json({message:["Password Invalid"]});  
@@ -109,7 +108,6 @@ export const resetPassword = async( req, res) => {
   const userFound = await usersService.findOneById(userId)
   if(!userFound.id) return res.status(400).json({message: "User not found"})
   res.redirect(`http://localhost:8080/api/views/reset-password/${userId}`)
-  // res.render('partials/session/resetPassword',userId)
 }
 
 export const updatedPassword = async(req,res) => {

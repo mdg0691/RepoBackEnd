@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { productController } from "../controllers/products.controller.js";
+import { authJwt } from "../middlewares/index.js";
 
 
 const productRouter = Router();
@@ -7,6 +8,6 @@ const productRouter = Router();
 productRouter.get("/",productController.findAllProducts);
 productRouter.get("/:productId", productController.findOneProduct);
 productRouter.post("/",productController.createOneProduct);
-productRouter.delete("/:productId",productController.deleteProduct);
+productRouter.delete("/:productId",[authJwt.isAdmin],productController.deleteProduct);
 
 export default productRouter;

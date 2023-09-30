@@ -14,7 +14,7 @@ cartsRouter.post("/:id/purchase", cartsController.purchaseCart)
 
 cartsRouter.post("/addtocart", cartsController.addToCart)
 
-cartsRouter.put("/removeproduct", cartsController.deleteCartProduct )
-cartsRouter.delete("/:id", cartsController.deleteCartProduct )
+cartsRouter.put("/removeproduct", cartsController.deleteProductFromCart )
+cartsRouter.delete("/:id", cartsController.deleteProductFromCart )
 
 export default cartsRouter

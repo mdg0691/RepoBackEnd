@@ -3,7 +3,7 @@ import { ticketsMongo } from "../DAL/DAOs/MongoDAOs/ticketsMongo.js";
 class TicketService {
   async findAllTickets() {
     try {
-      const response = await ticketsMongo.find()
+      const response = await ticketsMongo.findAll()
       console.log(response);
       return response
     } catch (error) {

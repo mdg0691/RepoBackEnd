@@ -12,7 +12,6 @@ class UserController {
     }
     async findUserById(req,res){
         const {idUser} = req.params
-        console.log(idUser);
         try{
             const user = await usersService.findOneById(idUser)
             res.status(200).json({message:'User',user})
